@@ -22,3 +22,22 @@ export const uploadAvatar = async (formData: FormData, id: string) =>
     `${apiRoutes.UPLOAD_AVATAR_IMAGE}/${id}`,
     formData,
   )
+
+export const refreshTokens = async () =>
+  apiRequest<undefined, UserType>('get', apiRoutes.REFRESH_TOKENS)
+
+export const createUser = async (data: CreateUserFields) =>
+  apiRequest<CreateUserFields, void>('post', apiRoutes.USERS_PREFIX)
+
+export const updateUser = async (data: UpdateUserFields, id: string) =>
+  apiRequest<UpdateUserFields, void>(
+    'patch',
+    `${apiRoutes.USERS_PREFIX}/${id}`,
+    data,
+  )
+
+export const fetchUsers = async (pageNumber: number) =>
+  apiRequest<null, UserType[]>(
+    'get',
+    `${apiRoutes.FETCH_USERS}?page=${pageNumber}`,
+  )
