@@ -1,4 +1,6 @@
 import { yupResolver } from '@hookform/resolvers/yup'
+import CreateUpdateUserForm from 'components/user/CreateUpdateUserForm'
+import { observer } from 'mobx-react'
 import { UserType } from 'models/auth'
 import { useForm } from 'react-hook-form'
 import * as Yup from 'yup'
@@ -81,4 +83,4 @@ export const useCreateUpdateUserForm = ({ defaultValues }: Props) => {
   }
 }
 
-export type CreateUpdateUserForm = ReturnType<typeof useCreateUpdateUserForm>
+export default observer(CreateUpdateUserForm)

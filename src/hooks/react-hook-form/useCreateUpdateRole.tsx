@@ -1,4 +1,6 @@
 import { yupResolver } from '@hookform/resolvers/yup'
+import CreateUpdateRoleForm from 'components/role/CreateUpdateRoleForm/CreateUpdateRoleForm'
+import { observer } from 'mobx-react'
 import { RoleType } from 'models/role'
 import { useForm } from 'react-hook-form'
 import * as Yup from 'yup'
@@ -40,4 +42,4 @@ export const useCreateUpdateRoleForm = ({ defaultValues }: Props) => {
   }
 }
 
-export type CreateUpdateRoleForm = ReturnType<typeof useCreateUpdateRoleForm>
+export default observer(CreateUpdateRoleForm)
