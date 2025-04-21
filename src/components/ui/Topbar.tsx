@@ -8,7 +8,6 @@ import { Link, useNavigate } from 'react-router-dom'
 import useMediaQuery from '../../hooks/useMediaQuery'
 import { routes } from '../../constants/routesConstants'
 import Avatar from 'react-avatar'
-import * as process from 'process'
 import Button from 'react-bootstrap/Button'
 
 const Topbar: FC = () => {
