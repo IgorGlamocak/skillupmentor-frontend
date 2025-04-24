@@ -66,7 +66,7 @@ const DashboardProducts: FC = () => {
         <div>Loading...</div>
       ) : (
         <>
-          {data?.data.data.length === 0 ? (
+          {data?.data.length === 0 ? (
             <p>No products found.</p>
           ) : (
             <>
@@ -81,7 +81,7 @@ const DashboardProducts: FC = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  {data?.data.data.map((item: ProductType, index: number) => (
+                  {data?.data.map((item: ProductType, index: number) => (
                     <tr key={index}>
                       <td>
                         <img
@@ -121,7 +121,7 @@ const DashboardProducts: FC = () => {
                   ))}
                 </tbody>
               </Table>
-              {data?.data.data.meta.last_page > 1 && (
+              {data?.data.meta.last_page > 1 && (
                 <div>
                   <Button
                     className="me-2"

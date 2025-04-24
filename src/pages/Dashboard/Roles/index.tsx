@@ -66,7 +66,7 @@ const DashboardRoles: FC = () => {
         <div>Loading...</div>
       ) : (
         <>
-          {data?.data.data.length === 0 ? (
+          {data?.data.length === 0 ? (
             <p>No roles found.</p>
           ) : (
             <>
@@ -78,7 +78,7 @@ const DashboardRoles: FC = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  {data?.data.data.map((item: RoleType, index: number) => (
+                  {data?.data.map((item: RoleType, index: number) => (
                     <tr key={index}>
                       <td>{item.name}</td>
                       <td>
@@ -109,7 +109,7 @@ const DashboardRoles: FC = () => {
                   ))}
                 </tbody>
               </Table>
-              {data?.data.data.meta.last_page > 1 && (
+              {data?.data.meta.last_page > 1 && (
                 <div>
                   <Button
                     className="me-2"
