@@ -39,7 +39,7 @@ export const useCreateUpdateUser = ({ defaultValues }: Props) => {
         'Password must have at least one number, lower or uppercase letter and it has to be longer than 5 characters',
       )
       .required(),
-    confrim_password: Yup.string()
+    confirm_password: Yup.string()
       .oneOf([Yup.ref('password'), null], 'Password do not match')
       .required('Password do not match'),
     role_id: Yup.string().required('Role field is required'),
@@ -49,7 +49,7 @@ export const useCreateUpdateUser = ({ defaultValues }: Props) => {
     last_name: Yup.string().notRequired(),
     email: Yup.string().email().required('Please enter a valid email'),
     password: Yup.string().notRequired(),
-    confrim_password: Yup.string()
+    confirm_password: Yup.string()
       .oneOf([Yup.ref('password'), null], 'Password do not match')
       .notRequired(),
     role_id: Yup.string().notRequired(),

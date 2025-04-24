@@ -21,7 +21,7 @@ export const useRegisterForm = () => {
         'Password must have at least one number, lower or uppercase letter and it has to be longer than 5 characters',
       )
       .required(),
-    confrim_password: Yup.string()
+    confirm_password: Yup.string()
       .oneOf([Yup.ref('password'), null], 'Password do not match')
       .required('Password do not match'),
   })
