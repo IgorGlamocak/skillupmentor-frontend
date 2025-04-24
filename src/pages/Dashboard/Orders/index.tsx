@@ -21,7 +21,7 @@ const DashboardOrders: FC = () => {
   const [selected, setSelected] = useState('')
   const [pageNumber, setPageNumber] = useState(1)
 
-  const { data, isLoading, refetch } = useQuery(
+  const { data, isLoading } = useQuery(
     ['fetchOrders', pageNumber],
     () => API.fetchOrders(pageNumber),
     {
