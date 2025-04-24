@@ -37,7 +37,7 @@ export const refreshTokens = async () =>
   apiRequest<undefined, UserType>('get', apiRoutes.REFRESH_TOKENS)
 
 export const createUser = async (data: CreateUserFields) =>
-  apiRequest<CreateUserFields, void>('post', apiRoutes.USERS_PREFIX)
+  apiRequest<CreateUserFields, UserType>('post', apiRoutes.USERS_PREFIX, data)
 
 export const updateUser = async (data: UpdateUserFields, id: string) =>
   apiRequest<UpdateUserFields, void>(

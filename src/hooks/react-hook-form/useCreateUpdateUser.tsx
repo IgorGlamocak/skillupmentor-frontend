@@ -36,22 +36,27 @@ export const useCreateUpdateUser = ({ defaultValues }: Props) => {
     password: Yup.string()
       .matches(
         /^(?=.*\d)[A-Za-z.\s_-]+[\w~@#$%^&*+='{};!?:".?()\[\]-]{6,}$/,
-        'Password must have at least one number, lower or uppercase letter and it has to be longer than 5 characters',
+        'Password must have at least one number, lower or uppercase letter and be longer than 5 characters',
       )
       .required(),
     confirm_password: Yup.string()
-      .oneOf([Yup.ref('password'), null], 'Password do not match')
-      .required('Password do not match'),
+      .oneOf([Yup.ref('password')], 'Passwords must match')
+      .required('Please confirm your password'),
     role_id: Yup.string().required('Role field is required'),
   })
+
   const UpdateUserSchema = Yup.object().shape({
     first_name: Yup.string().notRequired(),
     last_name: Yup.string().notRequired(),
     email: Yup.string().email().required('Please enter a valid email'),
     password: Yup.string().notRequired(),
-    confirm_password: Yup.string()
-      .oneOf([Yup.ref('password'), null], 'Password do not match')
-      .notRequired(),
+    confirm_password: Yup.string().when('password', {
+      is: (val: string) => val && val.length > 0,
+      then: Yup.string()
+        .oneOf([Yup.ref('password')], 'Passwords must match')
+        .required('Please confirm your password'),
+      otherwise: Yup.string().notRequired(),
+    }),
     role_id: Yup.string().notRequired(),
   })
 
@@ -60,15 +65,14 @@ export const useCreateUpdateUser = ({ defaultValues }: Props) => {
     formState: { errors },
     reset,
     control,
-  } = useForm({
+  } = useForm<CreateUserFields | UpdateUserFields>({
     defaultValues: {
-      first_name: '',
-      last_name: '',
-      email: '',
+      first_name: defaultValues?.first_name ?? '',
+      last_name: defaultValues?.last_name ?? '',
+      email: defaultValues?.email ?? '',
       password: '',
       confirm_password: '',
-      role_id: '',
-      ...defaultValues,
+      role_id: defaultValues?.role?.id ?? '',
     },
     mode: 'onSubmit',
     resolver: defaultValues
@@ -76,14 +80,7 @@ export const useCreateUpdateUser = ({ defaultValues }: Props) => {
       : yupResolver(CreateUserSchema),
   })
 
-  return {
-    handleSubmit,
-    errors,
-    reset,
-    control,
-  }
+  return { handleSubmit, errors, reset, control }
 }
 
 export type CreateUpdateUserForm = ReturnType<typeof useCreateUpdateUser>
-
-//export type CreateUpdateRoleForm = ReturnType<typeof useCreateUpdateRole>

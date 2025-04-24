@@ -3,34 +3,42 @@ import { FC, useEffect } from 'react'
 import * as c3 from 'c3'
 import * as API from 'api/Api'
 
+// Define the shape of the chart data returned from the server
+interface ChartDatum {
+  date: string
+  sum: string
+}
+
 const Dashboard: FC = () => {
   useEffect(() => {
     ;(async () => {
-      const chart = c3.generate({
+      // Fetch chart data and ensure it's typed
+      const response = await API.fetchChart()
+      const data: ChartDatum[] = response.data
+
+      // Generate the chart using the real data
+      c3.generate({
         bindto: '#chart',
         data: {
           x: 'x',
-          columns: [['x'], ['Sales']],
-          types: {
-            Sales: 'bar',
-          },
+          columns: [
+            ['x', ...data.map((r: ChartDatum) => r.date)],
+            ['Sales', ...data.map((r: ChartDatum) => Number(r.sum))],
+          ],
+          types: { Sales: 'bar' },
         },
         axis: {
           x: {
             type: 'timeseries',
-            tick: {
-              format: '%Y-%m-%d',
-            },
+            tick: { format: '%Y-%m-%d' },
+          },
+          y: {
+            label: { text: 'Revenue', position: 'outer-middle' },
           },
         },
-      })
-
-      const { data } = await API.fetchChart()
-      chart.load({
-        columns: [
-          ['x', ...data.map((r: { date: string; sum: string }) => r.date)],
-          ['Sales', ...data.map((r: { date: string; sum: string }) => r.sum)],
-        ],
+        padding: {
+          right: 20,
+        },
       })
     })()
   }, [])
