@@ -1,7 +1,7 @@
 import {
   CreateUserFields,
   UpdateUserFields,
-  useCreateUpdateUserForm,
+  useCreateUpdateUser,
 } from 'hooks/react-hook-form/useCreateUpdateUser'
 import { ChangeEvent, FC, useEffect, useState } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
@@ -26,7 +26,7 @@ interface Props {
 
 const CreateUpdateUserForm: FC<Props> = ({ defaultValues }) => {
   const navigate = useNavigate()
-  const { handleSubmit, errors, control } = useCreateUpdateUserForm({
+  const { handleSubmit, errors, control } = useCreateUpdateUser({
     defaultValues,
   })
   const { data: rolesData } = useQuery(['roles'], API.fetchRoles)

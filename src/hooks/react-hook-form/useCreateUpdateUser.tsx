@@ -4,6 +4,7 @@ import { observer } from 'mobx-react'
 import { UserType } from 'models/auth'
 import { useForm } from 'react-hook-form'
 import * as Yup from 'yup'
+import { useCreateUpdateRole } from './useCreateUpdateRole'
 
 export interface CreateUserFields {
   first_name?: string
@@ -27,7 +28,7 @@ interface Props {
   defaultValues?: UserType
 }
 
-export const useCreateUpdateUserForm = ({ defaultValues }: Props) => {
+export const useCreateUpdateUser = ({ defaultValues }: Props) => {
   const CreateUserSchema = Yup.object().shape({
     first_name: Yup.string().notRequired(),
     last_name: Yup.string().notRequired(),
@@ -83,4 +84,6 @@ export const useCreateUpdateUserForm = ({ defaultValues }: Props) => {
   }
 }
 
-export default observer(CreateUpdateUserForm)
+export type CreateUpdateUserForm = ReturnType<typeof useCreateUpdateUser>
+
+//export type CreateUpdateRoleForm = ReturnType<typeof useCreateUpdateRole>

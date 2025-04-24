@@ -66,7 +66,7 @@ const DashboardProducts: FC = () => {
         <div>Loading...</div>
       ) : (
         <>
-          {data?.data.length === 0 ? (
+          {data?.data.data.length === 0 ? (
             <p>No products found.</p>
           ) : (
             <>
@@ -81,7 +81,7 @@ const DashboardProducts: FC = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  {data?.data.map((item: ProductType, index: number) => (
+                  {data?.data.data.map((item: ProductType, index: number) => (
                     <tr key={index}>
                       <td>
                         <img

@@ -13,7 +13,7 @@ interface Props {
   defaultValues?: RoleType
 }
 
-export const useCreateUpdateRoleForm = ({ defaultValues }: Props) => {
+export const useCreateUpdateRole = ({ defaultValues }: Props) => {
   const CreateUpdateRoleSchema = Yup.object().shape({
     name: Yup.string().required('Name is required'),
     permissions: Yup.array().min(1),
@@ -42,4 +42,4 @@ export const useCreateUpdateRoleForm = ({ defaultValues }: Props) => {
   }
 }
 
-export default observer(CreateUpdateRoleForm)
+export type CreateUpdateRoleForm = ReturnType<typeof useCreateUpdateRole>

@@ -66,7 +66,7 @@ const DashboardRoles: FC = () => {
         <div>Loading...</div>
       ) : (
         <>
-          {data?.data.length === 0 ? (
+          {data?.data.data.length === 0 ? (
             <p>No roles found.</p>
           ) : (
             <>
@@ -78,7 +78,7 @@ const DashboardRoles: FC = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  {data?.data.map((item: RoleType, index: number) => (
+                  {data?.data.data.map((item: RoleType, index: number) => (
                     <tr key={index}>
                       <td>{item.name}</td>
                       <td>

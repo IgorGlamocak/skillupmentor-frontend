@@ -2,6 +2,7 @@ import { yupResolver } from '@hookform/resolvers/yup'
 import { ProductType } from 'models/product'
 import { useForm } from 'react-hook-form'
 import * as Yup from 'yup'
+import { useCreateUpdateRole } from './useCreateUpdateRole'
 
 export interface CreateUpdateProductFields {
   title: string
@@ -13,7 +14,7 @@ interface Props {
   defaultValues?: ProductType
 }
 
-export const useCreateUpdateProductForm = ({ defaultValues }: Props) => {
+export const useCreateUpdateProduct = ({ defaultValues }: Props) => {
   const CreateUpdateProductSchema = Yup.object().shape({
     title: Yup.string().required('Title is required'),
     description: Yup.string().required('Description is required'),
@@ -42,6 +43,5 @@ export const useCreateUpdateProductForm = ({ defaultValues }: Props) => {
   }
 }
 
-export type CreateUpdateProductForm = ReturnType<
-  typeof useCreateUpdateProductForm
->
+export type CreateUpdateProductForm = ReturnType<typeof useCreateUpdateProduct>
+//export type CreateUpdateRoleForm = ReturnType<typeof useCreateUpdateRole>

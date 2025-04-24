@@ -101,7 +101,7 @@ export const AppRoutes: AppRoute[] = [
   },
   {
     type: RouteType.PRIVATE,
-    path: '/dashboard/productsedit',
+    path: '/dashboard/products/edit',
     children: <DashboardProductsEdit />,
   },
   {

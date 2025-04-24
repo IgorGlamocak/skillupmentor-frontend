@@ -67,7 +67,7 @@ const DashboardUsers: FC = () => {
         <div>Loading...</div>
       ) : (
         <>
-          {data?.data.length === 0 ? (
+          {data?.data.data.length === 0 ? (
             <p>No users found.</p>
           ) : (
             <>
@@ -81,7 +81,7 @@ const DashboardUsers: FC = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  {data?.data.map((item: UserType, index: number) => (
+                  {data?.data.data.map((item: UserType, index: number) => (
                     <tr key={index}>
                       <td>{item.email}</td>
                       <td>

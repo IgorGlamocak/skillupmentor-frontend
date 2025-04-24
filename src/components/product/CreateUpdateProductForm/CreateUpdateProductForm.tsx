@@ -1,6 +1,6 @@
 import {
   CreateUpdateProductFields,
-  useCreateUpdateProductForm,
+  useCreateUpdateProduct,
 } from 'hooks/react-hook-form/useCreateUpdateProduct'
 import { ChangeEvent, FC, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
@@ -21,7 +21,7 @@ interface Props {
 
 const CreateUpdateProductForm: FC<Props> = ({ defaultValues }) => {
   const navigate = useNavigate()
-  const { handleSubmit, errors, control } = useCreateUpdateProductForm({
+  const { handleSubmit, errors, control } = useCreateUpdateProduct({
     defaultValues,
   })
   const [apiError, setApiError] = useState('')

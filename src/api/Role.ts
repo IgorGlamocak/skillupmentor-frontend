@@ -25,7 +25,7 @@ export const createRole = async (data: CreateUpdateRoleFields) =>
 export const updateRole = async (data: CreateUpdateRoleFields, id: string) =>
   apiRequest<CreateUpdateRoleFields, RoleType>(
     'patch',
-    `${apiRoutes.ROLES_PREFIX}/{id}`,
+    `${apiRoutes.ROLES_PREFIX}/${id}`,
     data,
   )
 

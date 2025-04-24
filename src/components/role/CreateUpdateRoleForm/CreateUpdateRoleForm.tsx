@@ -9,13 +9,13 @@ import { routes } from 'constants/routesConstants'
 import Button from 'react-bootstrap/Button'
 import * as API from 'api/Api'
 import { StatusCode } from 'constants/errorConstants'
-import { useQuery } from 'react-query'
-import { observer } from 'mobx-react'
-import { PermissionType, RoleType } from 'models/role'
 import {
   CreateUpdateRoleFields,
-  useCreateUpdateRoleForm,
-} from 'hooks/react-hook-form/useCreateUpdateRole'
+  useCreateUpdateRole,
+} from '../../../hooks/react-hook-form/useCreateUpdateRole'
+import { PermissionType, RoleType } from '../../../models/role'
+import { useQuery } from 'react-query'
+import { observer } from 'mobx-react'
 
 interface Props {
   defaultValues?: RoleType
@@ -27,7 +27,7 @@ interface StatePermissions extends PermissionType {
 
 const CreateUpdateRoleForm: FC<Props> = ({ defaultValues }) => {
   const navigate = useNavigate()
-  const { handleSubmit, errors, control, register } = useCreateUpdateRoleForm({
+  const { handleSubmit, errors, control, register } = useCreateUpdateRole({
     defaultValues,
   })
   const [apiError, setApiError] = useState('')
